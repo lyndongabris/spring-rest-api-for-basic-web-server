@@ -8,10 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RestApiApplication {
 
 	public static void main(String[] args) {
-		// TODO: replace with properties
-		Flyway flyway = Flyway.configure().dataSource("jdbc:postgresql://localhost:5432/server",
-				"server", "tempPassword").load();
-		flyway.migrate();
 		SpringApplication.run(RestApiApplication.class, args);
 	}
 

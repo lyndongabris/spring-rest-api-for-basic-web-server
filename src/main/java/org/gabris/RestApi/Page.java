@@ -8,7 +8,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "pages")
 class Page {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
     private String pageName;
     private List<HttpVerb> verbs;
     private String contentType;

@@ -1,2 +1,2 @@
-INSERT INTO pages(page, verbs, content_type, path)
-VALUES ('/', 'GET', 'text/html', 'pages/index.html');
+INSERT INTO pages(page_name, verbs, content_type, path)
+VALUES ('/', ARRAY[2], 'text/html', 'pages/index.html');

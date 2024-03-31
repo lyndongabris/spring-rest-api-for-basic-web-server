@@ -15,7 +15,7 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(PageRepository repository) {
         return args -> {
-            log.info("Preloading " + repository.save(new Page("/", List.of(HttpVerb.GET), "text/html", "pages/index.html")));
+            // Just testing the use of JPA to load the DB with initial data
             log.info("Preloading " + repository.save(new Page("/new", List.of(HttpVerb.GET), "text/html", "pages/new.html")));
         };
     }

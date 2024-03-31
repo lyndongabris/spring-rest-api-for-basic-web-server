@@ -5,13 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class PageController {
-    private final PageRepository repository;
-
-    public PageController(PageRepository repository) {
-        this.repository = repository;
-    }
-
+record PageController(PageRepository repository) {
     @GetMapping("/pages")
     List<Page> all() {
         return repository.findAll();
