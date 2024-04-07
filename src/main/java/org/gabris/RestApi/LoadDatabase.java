@@ -16,7 +16,9 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(PageRepository repository) {
         return args -> {
             // Just testing the use of JPA to load the DB with initial data
-            log.info("Preloading " + repository.save(new Page("/new", List.of(HttpVerb.GET), "text/html", "pages/new.html")));
+            if (repository.findByPageName("/new").isEmpty()) {
+                log.info("Preloading " + repository.save(new Page("/new", List.of(HttpVerb.GET), "text/html", "pages/new.html")));
+            }
         };
     }
 }

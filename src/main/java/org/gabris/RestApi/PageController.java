@@ -8,7 +8,10 @@ import java.util.Optional;
 @RestController
 record PageController(PageRepository repository) {
     @GetMapping("/pages")
-    List<Page> all() {
+    List<Page> all(@RequestParam(name = "pageName") Optional<String> pageName) {
+        if (pageName.isPresent() && !pageName.get().isBlank()) {
+            return repository.findByPageName(pageName.get());
+        }
         return repository.findAll();
     }
 
@@ -27,7 +30,7 @@ record PageController(PageRepository repository) {
     Page replacePage(@RequestBody Page newPage, @PathVariable Long id) {
         Optional<Page> oldPage = repository.findById(id);
         if (oldPage.isPresent()) {
-            Page page = getPage(newPage, id, oldPage);
+            Page page = getPage(newPage, id, oldPage.get());
             return repository.save(page);
         } else {
             Page page = new Page(newPage.getPageName(), newPage.getVerbs(), newPage.getContentType(), newPage.getPath());
@@ -36,11 +39,11 @@ record PageController(PageRepository repository) {
         }
     }
 
-    private static Page getPage(Page newPage, Long id, Optional<Page> oldPage) {
-        String pageName = newPage.getPageName() != null ? newPage.getPageName() : oldPage.get().getPageName();
-        List<HttpVerb> verbs = newPage.getVerbs() != null ? newPage.getVerbs() : oldPage.get().getVerbs();
-        String contentType = newPage.getContentType() != null ? newPage.getContentType() : oldPage.get().getContentType();
-        String path = newPage.getPath() != null ? newPage.getPath() : oldPage.get().getPath();
+    private static Page getPage(Page newPage, Long id, Page oldPage) {
+        String pageName = newPage.getPageName() != null ? newPage.getPageName() : oldPage.getPageName();
+        List<HttpVerb> verbs = newPage.getVerbs() != null ? newPage.getVerbs() : oldPage.getVerbs();
+        String contentType = newPage.getContentType() != null ? newPage.getContentType() : oldPage.getContentType();
+        String path = newPage.getPath() != null ? newPage.getPath() : oldPage.getPath();
         Page page = new Page(pageName, verbs, contentType, path);
         page.setId(id);
         return page;
