@@ -1,5 +1,8 @@
-package org.gabris.RestApi;
+package org.gabris.RestApi.controller;
 
+import org.gabris.RestApi.util.HttpVerb;
+import org.gabris.RestApi.data.PageRepository;
+import org.gabris.RestApi.model.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,9 +36,8 @@ record PageController(PageRepository repository) {
             Page page = getPage(newPage, id, oldPage.get());
             return repository.save(page);
         } else {
-            Page page = new Page(newPage.getPageName(), newPage.getVerbs(), newPage.getContentType(), newPage.getPath());
-            page.setId(id);
-            return repository.save(page);
+            newPage.setId(id);
+            return repository.save(newPage);
         }
     }
 

@@ -1,4 +1,4 @@
-package org.gabris.RestApi;
+package org.gabris.RestApi.controller;
 
 public class PageNotFoundException extends RuntimeException {
     public PageNotFoundException(Long id) {

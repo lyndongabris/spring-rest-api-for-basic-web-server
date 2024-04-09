@@ -1,5 +1,7 @@
-package org.gabris.RestApi;
+package org.gabris.RestApi.data;
 
+import org.gabris.RestApi.model.Page;
+import org.gabris.RestApi.util.HttpVerb;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -15,7 +17,7 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(PageRepository repository) {
         return args -> {
-            // Just testing the use of JPA to load the DB with initial data
+            // Just testing the use of JPA/Hibernate to load the DB with initial data
             if (repository.findByPageName("/new").isEmpty()) {
                 log.info("Preloading " + repository.save(new Page("/new", List.of(HttpVerb.GET), "text/html", "pages/new.html")));
             }

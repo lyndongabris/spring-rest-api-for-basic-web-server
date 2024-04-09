@@ -1,4 +1,4 @@
-package org.gabris.RestApi;
+package org.gabris.RestApi.util;
 
 public enum HttpVerb {
     PUT,

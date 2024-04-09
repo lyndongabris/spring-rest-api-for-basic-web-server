@@ -1,5 +1,6 @@
-package org.gabris.RestApi;
+package org.gabris.RestApi.data;
 
+import org.gabris.RestApi.model.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

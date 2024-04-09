@@ -1,14 +1,15 @@
-package org.gabris.RestApi;
+package org.gabris.RestApi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import org.gabris.RestApi.util.HttpVerb;
 
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "pages")
-class Page {
+public class Page {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @JsonProperty
     Long id;
     private String pageName;
@@ -30,7 +31,7 @@ class Page {
         this.id = id;
     }
 
-    private Long getId() {
+    public Long getId() {
         return id;
     }
 
